@@ -2,7 +2,7 @@
 	'use strict';
 
 	var app = angular.module("ToDo", []);
-	app.controller("todoController", ["$scope", "$http"], function($scope, $http){
+	app.controller("todoController", ["$scope"], function($scope){
 		$scope.todos = [
 			{
 				"id": 23,
@@ -14,7 +14,8 @@
 				"done": true,
 				"title": "Done server side TODO."
 			}
-		];
+		]
+
 		$scope.addTodo = function() {
 
 		}
