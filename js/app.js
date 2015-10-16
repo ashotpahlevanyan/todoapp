@@ -111,8 +111,11 @@
 			};
 			$scope.updateCompleted();
 		}
-		$scope.editTodo = function() {
-
+		$scope.editTodo = function(todo) {
+			todo.editing = true;
+		}
+		$scope.saveEdited = function(todo) {
+			todo.editing = false;
 		}
 		$scope.selectMe = function() {
 			//$(this).parent

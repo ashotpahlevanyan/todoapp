@@ -1,8 +1,19 @@
-<li ng-repeat="todo in todos" ng-class="completed" ng-dblclick="editTodo()" ng-dblclick="editTodo();">
+<!-- <li ng-repeat="todo in todos" ng-class="completed" ng-dblclick="editTodo()" ng-dblclick="editTodo();">
 	<div class="view">
 		<input class="toggle" type="checkbox" ng-model="todo.done" ng-click="updateCompleted();">
 		<label>{{todo.title}}</label>
 		<button class="destroy" ng-click="removeTodo(todo);"></button>
 	</div>
 	<input class="edit" ng-model="todo.title">
-</li>
+</li> -->
+
+<!-- 
+					<li ng-repeat="todo in todos | filter : getFilterOrNo(todo);" ng-class="completed" ng-dblclick="editTodo();">
+						<div class="view">
+							<input class="toggle" type="checkbox" ng-model="todo.done" ng-click="updateCompleted();">
+							<label>{{todo.title}}</label>
+							<button class="destroy" ng-click="removeTodo(todo);"></button>
+						</div>
+						<input class="edit" ng-model="todo.title">
+					</li>
+				-->
