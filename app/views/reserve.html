@@ -1,0 +1,67 @@
+<ul id="todo-list"> <!-- ui-view -->
+					<li ng-repeat="todo in todos | filter: filterFunction(todo)" data-ng-class="{'completed': todo.done,'editing': todo.editing}" ng-dblclick="editTodo(todo);" my-enter="saveEdited(todo);"> <!-- ng-mouseleave="saveEdited(todo);"-->
+						<div class="view">
+							<input class="toggle" type="checkbox" ng-model="todo.done" ng-click="updateCompleted();">
+							<label>{{todo.title}}</label>
+							<button class="destroy" ng-click="removeTodo(todo);"></button>
+						</div>
+						<input class="edit" ng-model="todo.title">
+					</li>	
+				</ul>
+
+// var html = getTemplate(scope.content.ui);
+	// var ae = angular.element(html);
+		
+	// element.replaceWith(ae);
+	// $compile(ae)(scope);
+
+	
+
+	//$scope.filterFunction = function(todo) {
+		 //if($scope.filter == "all" return false;
+		 // if($scope.filter == 'active' &&  todo.done == true) return true;
+		 // if($scope.filter == 'completed' &&  todo.done == false) return true;
+		 // return false;
+
+	//}
+	// $scope.setFilter = function() {
+	// 	angular.element(document).ready(function () {
+	// 	var parent = angular.element(document.getElementById('filters'));
+	// 		angular.forEach(parent.children(), function() {
+				
+	// 		});
+	// 	});
+
+
+	// 	console.log(angular.element);
+	// 	angular.element.parent().find("a").removeClass("selected");
+	// 	angular.element.find("a").addClass("selected");
+	// }
+
+
+	// $scope.setFilter = function (argument) {
+	// 	if(argument == "all") {
+	// 		$scope.filterValue = "all";
+	// 		console.log("all");
+	// 	}
+	// 	if(argument == "active") {
+	// 		$scope.filterValue = "active";
+	// 		console.log("active");
+	// 	}
+	// 	if(argument == "completed") {
+	// 		$scope.filterValue = "completed";
+	// 		console.log("completed");
+	// 	}
+	// }
+	// $scope.getFilterOrNo = function(todo) {
+	// 	switch ($scope.filterValue) {
+	// 		case "active":
+	// 			return todo.done == false;
+	// 		case "completed":
+	// 		return todo.done == true;
+	// 		case "all":
+	// 			return;
+	// 		default:
+	// 			return;
+	// 	}
+	// }

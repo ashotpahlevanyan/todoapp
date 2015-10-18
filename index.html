@@ -35,13 +35,13 @@
 				<input id="toggle-all" type="checkbox" ng-click="checkAll();" ng-model="allChecked">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list"> <!-- ui-view -->
-					<li ng-repeat="todo in todos" data-ng-class="{'completed': todo.done,'editing': todo.editing}" ng-dblclick="editTodo(todo);" my-enter="saveEdited(todo);"> <!-- ng-mouseleave="saveEdited(todo);"-->
+					<li ng-repeat="todo in todos" data-ng-show="showFilter(todo.done);" data-ng-class="{'completed': todo.done,'editing': todo.editing}" ng-dblclick="editTodo(todo);" my-enter="saveEdited(todo);"> <!-- ng-mouseleave="saveEdited(todo);"-->
 						<div class="view">
 							<input class="toggle" type="checkbox" ng-model="todo.done" ng-click="updateCompleted();">
 							<label>{{todo.title}}</label>
 							<button class="destroy" ng-click="removeTodo(todo);"></button>
 						</div>
-						<input class="edit" ng-model="todo.title">
+						<input class="edit" ng-model="todo.title" ng-show="todo.editing" focus-on-show>
 					</li>	
 				</ul>
 				
@@ -81,13 +81,13 @@
 				<!-- Remove this if you don't implement routing -->
 				<ul id="filters">
 					<li>
-						<a class="selected" href="#/all">All</a>
+						<a href="#" ng-class="{'selected': filter=='all'}" ng-click="filter='all'">All</a>
 					</li>
 					<li>
-						<a href="#/active">Active</a>
+						<a href="#" ng-class="{'selected': filter=='active'}" ng-click="filter='active'">Active</a>
 					</li>
 					<li>
-						<a href="#/completed">Completed</a>
+						<a href="#" ng-class="{'selected': filter=='completed'}" ng-click="filter='completed'">Completed</a>
 					</li>
 				</ul>
 				<!-- Hidden if no completed items are left ↓ -->

@@ -1,6 +1,8 @@
+'use strict';
+
 app.controller("toDoController", ["$scope", "$http",'getTodosService', 
 	function($scope, $http, getTodosService){
-		
+	$scope.filter = "all";	
 	$scope.todos = [];
 	var init = function(){
 		var promise = getTodosService.getTodos();
@@ -34,15 +36,44 @@ app.controller("toDoController", ["$scope", "$http",'getTodosService',
 
 	$scope.newId = function() {
 		//get min and max, then if max - min = length return max + 1 , else sort and go through all and find the first empty index, and return that one
-		idsList = [];
+
+		// Version :1 
+		// this algorithms is slower, but it finds also deleted or unused ids
+		// also it works with negative ids as well as the other one
+		var idsList = [];
 		if($scope.todos.length) {
 			for (var i = $scope.todos.length - 1; i >= 0; i--) {
 				idsList.push(parseInt($scope.todos[i].id));
 			};	
 			var maxId = Math.max.apply(Math, idsList);
-			return (maxId + 1);
+			var minId = Math.min.apply(Math, idsList);
+			if(maxId - minId == $scope.todos.length - 1 ) {
+				if(minId > 1) {
+					return minId - 1;
+				} else {
+					return maxId + 1;
+				}
+			} else {
+				for(var i = minId + 1; i < maxId; i++) {
+					if(idsList.indexOf(i) == -1 ) {
+						return i;
+					}
+				}
+			}
 		}
 		return 1;
+
+		//Version :2
+		//////////////////// return largest + 1 will simply work
+		// var idsList = [];
+		// if($scope.todos.length) {
+		// 	for (var i = $scope.todos.length - 1; i >= 0; i--) {
+		// 		idsList.push(parseInt($scope.todos[i].id));
+		// 	};	
+		// 	var maxId = Math.max.apply(Math, idsList);
+		// 	return (maxId + 1);
+		// }
+		// return 1;
 		
 	}
 	$scope.addTodo = function() {
@@ -76,39 +107,23 @@ app.controller("toDoController", ["$scope", "$http",'getTodosService',
 			$scope.todos[i].editing = false;
 		};
 		todo.editing = true;
+		$timeout(function(){
+			$scope.input.focus();
+		},0);
 	}
 	$scope.saveEdited = function(todo) {
 		todo.editing = false;
 	}
-	$scope.selectMe = function() {
-		//$(this).parent
-	}
-	// $scope.setFilter = function (argument) {
-	// 	if(argument == "all") {
-	// 		$scope.filterValue = "all";
-	// 		console.log("all");
-	// 	}
-	// 	if(argument == "active") {
-	// 		$scope.filterValue = "active";
-	// 		console.log("active");
-	// 	}
-	// 	if(argument == "completed") {
-	// 		$scope.filterValue = "completed";
-	// 		console.log("completed");
-	// 	}
-	// }
-	// $scope.getFilterOrNo = function(todo) {
-	// 	switch ($scope.filterValue) {
-	// 		case "active":
-	// 			return todo.done == false;
-	// 		case "completed":
-	// 		return todo.done == true;
-	// 		case "all":
-	// 			return;
-	// 		default:
-	// 			return;
-	// 	}
-	// }
 
+	$scope.showFilter = function(done){
+		if($scope.filter == 'active' &&  done == true) {
+			return false;
+		}
+		if($scope.filter == 'completed' &&  done == false) {
+			return false;
+		}
+		return true;
+	}
+	
 }]);
 

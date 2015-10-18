@@ -1,3 +1,5 @@
+'use strict';
+
 app.service('getTodosService', ['$http', "$q", function($http, $q) {
 	var deferred = $q.defer();
 	$http({

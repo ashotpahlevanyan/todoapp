@@ -1,3 +1,4 @@
+'use strict';
 app.directive('myEnter', function () {
 	return function (scope, element, attrs) {
 		element.bind("keydown keypress", function (event) {
@@ -11,6 +12,49 @@ app.directive('myEnter', function () {
 		});
 	};
 });
+
+
+app.directive('focusOnShow', function($timeout) {
+    return {
+        restrict: 'A',
+        link: function($scope, $element, $attr) {
+            if ($attr.ngShow){
+                $scope.$watch($attr.ngShow, function(newValue){
+                    if(newValue){
+                        $timeout(function(){
+                            $element.focus();
+                        }, 100);
+                    }
+                })      
+            }
+            if ($attr.ngHide){
+                $scope.$watch($attr.ngHide, function(newValue){
+                    if(!newValue){
+                        $timeout(function(){
+                            $element.focus();
+                        }, 0);
+                    }
+                })      
+            }
+
+        }
+    };
+});
+
+// app.directive('focusOn',function($timeout) {
+//     return {
+//         restrict : 'A',
+//         link : function($scope,$element,$attr) {
+//             $scope.$watch($attr.focusOn,function(_focusVal) {
+//                 $timeout(function() {
+//                     _focusVal ? $element.focus() :
+//                         $element.blur();
+//                 });
+//             });
+//         }
+//     }
+// });
+
 
 // app.directive('myFocus', function($timeout) {
 //   return {
