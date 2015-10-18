@@ -1,22 +1,25 @@
 <!doctype html>
-<html lang="en" data-ng-app="toDoApp">
+<html lang="en" data-ng-app="toDoApp" ng-cloak>
 	<head>
 		<meta name="keywords" content="">
         <meta name="description" content="">
 		<meta charset="UTF-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
-		<link rel="icon" type="images/x-icon" href="images/favicon.ico">
+		<link rel="icon" type="images/x-icon" href="assets/images/favicon.ico">
 		<title>Celonis Code Sample • TodoMVC</title>
 		<link rel="stylesheet" href="bower_components/todomvc-common/base.css">
 		<!-- CSS overrides - remove if you don't need it -->
-		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="assets/css/style.css">
 
 		<!-- html5.js for IE8 support of HTML5 elements:
              respond.js for bootstrap support in IE8: -->
         <!--[if IE]>
-		<script type="text/javascript" src="assets/js/html5shiv.js"></script>
-		<script type="text/javascript" src="assets/js/respond.js"></script>
+        	<script src="bower_components/html5shiv/dist/html5shiv.js"></script>
+			<script src="bower_components/respond/dest/respond.min.js"></script>
 		<![endif]-->
+
+		<!--script type="text/javascript" src="assets/js/html5shiv.js"></script -->
+		<!--script type="text/javascript" src="assets/js/respond.js"></script-->
 	</head>
 	<body>
 		<section id="todoapp" ng-controller="toDoController">
@@ -32,9 +35,9 @@
 				<input id="toggle-all" type="checkbox" ng-click="checkAll();" ng-model="allChecked">
 				<label for="toggle-all">Mark all as complete</label>
 				<ul id="todo-list"> <!-- ui-view -->
-					<li ng-repeat="todo in todos" data-ng-class="{'completed': todo.done,'editing': todo.editing}" ng-dblclick="editTodo(todo);" my-enter="saveEdited(todo);">
+					<li ng-repeat="todo in todos" data-ng-class="{'completed': todo.done,'editing': todo.editing}" ng-dblclick="editTodo(todo);" my-enter="saveEdited(todo);"> <!-- ng-mouseleave="saveEdited(todo);"-->
 						<div class="view">
-							<input class="toggle" type="checkbox" ng-model="todo.done" ng-click="updateCompleted();" >
+							<input class="toggle" type="checkbox" ng-model="todo.done" ng-click="updateCompleted();">
 							<label>{{todo.title}}</label>
 							<button class="destroy" ng-click="removeTodo(todo);"></button>
 						</div>
@@ -101,6 +104,10 @@
 		<!-- Scripts here. Don't remove this ↓ -->
 		<script type="text/javascript" src="bower_components/angular/angular.min.js"></script>
 		<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
-		<script type="text/javascript" src="js/app.js"></script>
+		<script type="text/javascript" src="app/app.js"></script>
+		<script type="text/javascript" src="app/directives/directives.js"></script>
+		<script type="text/javascript" src="app/services/services.js"></script>
+		<script type="text/javascript" src="app/controllers/controllers.js"></script>
+
 	</body>
 </html>
