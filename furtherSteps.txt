@@ -1,0 +1,36 @@
+/// Question 
+1) Choose your architecture
+Please describe the architecture/framework/pattern/library you will use in order
+to implement the app. Please try to not think about it as a very small and
+simple TODO app but choose an architecture which is easily extendable etc.
+
+Descibe which additional components you would add to make it production ready.
+
+///Answer
+I have used AngularJS implementation of MVC pattern. I chose that architecture after doing some research on advantages and disadvantages of using 
+the following JS frameworks/libraries claiming to completely or partially implement MV* pattern.
+AngularJS, Backbone, Ember, Meteor, React.
+I decided to start learning from AngularJS, and liked it much. It is complicated first, but then you get involved and try to use it as much as possible.
+I have experience with jQuery templating as well, but I found Angular more appropriate for templating goals. It is modular and easily extendible.
+For the ToDo application that was under microscope, I thought about it as a single page application. 
+First I was thinking to implement filtering with routing, thats why I used ui-router. The native Angular Router might work as well, but I like state based approach more because of the ability to make multiple nestings. Then I found that even there might be no need to implement multiple views with routing, but instead do the filtering ng-show/hide depending on the filters "all" , "active" and "completed". And it worked quite well. 
+
+What I would like to add further, to make it production ready.
+
+1. First of all I would add automated testing with Jasmine and protractor
+2. From Front-End point of view I would like to see the app working responsive with mobile/tablet and cross browser support, as well as some fancy styles/animations
+3. From User perspective I would like to ba able to move todos up and down, so drag and drop would be more than appropriate here
+I have googled for drag and drop plugin/extension for Angular, and found a good one 
+https://github.com/marceljuenemann/angular-drag-and-drop-lists, 
+http://marceljuenemann.github.io/angular-drag-and-drop-lists/demo/#/nested
+I think also this drag and drop feature might be implemented with some directives as well
+4. The other thing I would like to see is the ability to have multiple lists side by side, so that you could drag todos from one list to another
+5. More advanced feature would be the ability to attach some media, files, or links, Deadlines (Date/Time) to each todo, this would be make them more detailed
+6. If I would use it in small group, then also would like to invite people to list/todo, since some tasks might be accomplished in collaboration, so multiple users might be applicable
+7. The other more advanced thing might be to add suggestions and ratings for each todo, so that the team might collaborate and find the better way of accomplishing that goal (described in todo)
+8. The last but not the least (I would put it in 4 position, but it is more understandable after 7.), would be to add sub todos, like small tasks to accomplish the general task.
+
+
+Thanks for getting here ;)
+
+
